@@ -3,8 +3,8 @@ import numpy as np
 import mpmath as mp
 from mpmath import *
 
-mp.dps = 30
-mp.pretty = True
+#mp.dps = 100
+#mp.pretty = True
 
 N=1000
 rd = np.array([1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 3, 5, 10, 15, 20])
@@ -12,13 +12,38 @@ tD= np.linspace(1e-2,1e3,50)
 G = np.zeros((len(tD),len(rd)))
 trd = np.zeros(len(tD))
 # Definindo s como uma variável simbólica
-for r in range(len(rd)):
-    print(r)
-    for i in range(len(tD)):
-        f = lambda s: besselk(0, rd[r] * sqrt(s)) / (s ** (3 / 2) * besselk(1, sqrt(s)))
-        G[i][r] = mp.invertlaplace(f, tD[i])
+for i in range(len(tD)):
+    print(i)
+    for r in range(len(rd)):
+        f = lambda s: mp.besselk(0, rd[r] * np.sqrt(s)) / (s ** (3 / 2) * mp.besselk(1, np.sqrt(s)))
+        G[i][r] = mp.invertlaplace(f, tD[i], method="Stehfest")
         trd[i] = tD[i]/(rd[r]**2)
 
-print(G[0][0])
-# plt.loglog(trd,G[:][:])
-# plt.show()
+pdPlot = np.zeros((len(rd),len(tD)))
+pd0 = [linha[0] for linha in G]
+pd1 = [linha[1] for linha in G]
+pd2 = [linha[2] for linha in G]
+pd3 = [linha[3] for linha in G]
+pd4 = [linha[4] for linha in G]
+pd5 = [linha[5] for linha in G]
+pd6 = [linha[6] for linha in G]
+pd7 = [linha[7] for linha in G]
+pd8 = [linha[8] for linha in G]
+pd9 = [linha[9] for linha in G]
+pd10 = [linha[10] for linha in G]
+pd11 = [linha[11] for linha in G]
+
+plt.loglog(trd,pd0)
+plt.loglog(trd,pd1)
+plt.loglog(trd,pd2)
+plt.loglog(trd,pd3)
+plt.loglog(trd,pd4)
+plt.loglog(trd,pd5)
+plt.loglog(trd,pd6)
+plt.loglog(trd,pd7)
+plt.loglog(trd,pd8)
+plt.loglog(trd,pd9)
+plt.loglog(trd,pd10)
+plt.loglog(trd,pd11)
+
+plt.show()
