@@ -2,21 +2,24 @@ import matplotlib.pyplot as plt
 import numpy as np
 import mpmath as mp
 from mpmath import *
+from scipy import special as sp
+from invlaplace import invlaplace
 
 #mp.dps = 100
 #mp.pretty = True
 
 N=1000
 rd = np.array([1, 1.1, 1.2, 1.3, 1.4, 1.5, 2, 3, 5, 10, 15, 20])
-tD= np.linspace(1e-2,1e3,50)
+tD= np.linspace(1e-2,1e3,1000)
 G = np.zeros((len(tD),len(rd)))
 trd = np.zeros(len(tD))
 # Definindo s como uma variável simbólica
 for i in range(len(tD)):
     print(i)
     for r in range(len(rd)):
-        f = lambda s: mp.besselk(0, rd[r] * np.sqrt(s)) / (s ** (3 / 2) * mp.besselk(1, np.sqrt(s)))
-        G[i][r] = mp.invertlaplace(f, tD[i], method="Stehfest")
+        f = lambda s: sp.k0(rd[r] * np.sqrt(s)) / (s ** (3 / 2) * sp.k1(np.sqrt(s)))
+        var = invlaplace(tD[i],f, 8)
+        G[i][r] = var.gavsteh_param()
         trd[i] = tD[i]/(rd[r]**2)
 
 pdPlot = np.zeros((len(rd),len(tD)))
