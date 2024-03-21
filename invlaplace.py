@@ -1,5 +1,6 @@
 import math
 import numpy as np
+from scipy import special as sp
 
 class invlaplace:
     def __init__(self,t,func,l):
@@ -7,23 +8,28 @@ class invlaplace:
         self.func = func
         self.l = l
 
-    def gavsteh_param(self):
-
-        n = int(self.l / 2)
-        v = []
-
-        for j in range(1, self.l+1):
+    def gavsteh(self,funname, t, L):
+        nn2 = L // 2
+        nn21 = nn2 + 1
+        v = np.zeros(L)
+        
+        for n in range(1, L+1):
             z = 0.0
-            for k in range(((j+1)//2), min(j, n)+1):
-                z = z + ((k**n) * math.factorial(2*k)) / (math.factorial(n-k) * math.factorial(k) * math.factorial(k-1) *
-                                                        math.factorial(j-k) * math.factorial((2*k) - j))
-            v.append((-1)**(j+n) * z)
-
-        somme = 0.
-        ln2_on_t = np.log(2.) / self.t
-        for j in range(1, self.l+1):
-            p = j * ln2_on_t
-            somme += (v[j-1] * self.func(p))
-
-        ilt = somme * ln2_on_t
+            for k in range(math.floor((n + 1) / 2), min(n, nn2) + 1):
+                z += ((k**nn2) * math.factorial(2*k)) / \
+                    (math.factorial(nn2-k) * math.factorial(k) * math.factorial(k-1) * \
+                    math.factorial(n-k) * math.factorial(2*k - n))
+            v[n-1] = (-1)**(n+nn2) * z
+        
+        sum_val = 0.0
+        ln2_on_t = math.log(2.0) / t
+        
+        for n in range(1, L+1):
+            p = n * ln2_on_t
+            sum_val += v[n-1] * funname(p)
+        
+        ilt = sum_val * ln2_on_t
+        
         return ilt
+    
+
