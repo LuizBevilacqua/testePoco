@@ -34,8 +34,15 @@ Gtrans = G.T
 fig ,ax = plt.subplots()
 
 for i in range(len(red)):
-    ax.semilogx(tD,Gtrans[i][:])
+    if i == len(red)-1:
+        ax.semilogx(tD,Gtrans[i][:],label=r'$\frac{r_e}{r_w} \rightarrow \infty$')
+    else:    
+        ax.semilogx(tD, Gtrans[i][:], label=r'$\frac{re}{rw} =' + f'{red[i]}$')
+    
 
+plt.legend()
+plt.xlabel(r'$\mathbf{log(t_D)}$')
+plt.ylabel(r'$\mathbf{p_D}$')
 plt.grid(True, which="both", ls="-.")
 plt.axis([1e3,1e6,4,11])
 plt.show()
