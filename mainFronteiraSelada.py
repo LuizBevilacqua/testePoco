@@ -41,7 +41,7 @@ for i in range(len(red)):
     
 
 plt.legend()
-plt.xlabel(r'$\mathbf{log(t_D)}$')
+plt.xlabel(r'$\mathbf{log t_D}$')
 plt.ylabel(r'$\mathbf{p_D}$')
 plt.grid(True, which="both", ls="-.")
 plt.axis([1e3,1e6,4,11])

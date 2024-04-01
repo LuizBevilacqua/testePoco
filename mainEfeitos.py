@@ -74,39 +74,39 @@ Gc4s2 = [G[t][4][2] for t in range(len(G))]
 Gc4s3 = [G[t][4][3] for t in range(len(G))]
 Gc4s4 = [G[t][4][4] for t in range(len(G))]
 
-ax.loglog(tD,Gc0s0, label =f'C = {cD[0]}' , color='blue')
+ax.loglog(tD,Gc0s0, label =r'$C_D = $' + f'{cD[0]}' , color='blue')
 ax.loglog(tD,Gc0s1, color='blue') 
 ax.loglog(tD,Gc0s2, color='blue')
 ax.loglog(tD,Gc0s3, color='blue')
 ax.loglog(tD,Gc0s4, color='blue')
 
-ax.loglog(tD,Gc1s0, label =f'C = {cD[1]}', color='green')
+ax.loglog(tD,Gc1s0, label =r'$C_D = $' + f'{cD[1]}', color='green')
 ax.loglog(tD,Gc1s1, color='green') 
 ax.loglog(tD,Gc1s2, color='green')
 ax.loglog(tD,Gc1s3, color='green')
 ax.loglog(tD,Gc1s4, color='green')
 
-ax.loglog(tD,Gc2s0, label =f'C = {cD[2]}', color='red')
+ax.loglog(tD,Gc2s0, label =r'$C_D = $' + f'{cD[2]}', color='red')
 ax.loglog(tD,Gc2s1, color='red') 
 ax.loglog(tD,Gc2s2, color='red')
 ax.loglog(tD,Gc2s3, color='red')
 ax.loglog(tD,Gc2s4, color='red')
 
-ax.loglog(tD,Gc3s0, label =f'C = {cD[3]}', color='orange')
+ax.loglog(tD,Gc3s0, label =r'$C_D = $' + f'{cD[3]}', color='orange')
 ax.loglog(tD,Gc3s1, color='orange') 
 ax.loglog(tD,Gc3s2, color='orange')
 ax.loglog(tD,Gc3s3, color='orange')
 ax.loglog(tD,Gc3s4, color='orange')
 
-ax.loglog(tD,Gc4s0, label =f'C = {cD[4]}', color='black')
+ax.loglog(tD,Gc4s0, label =r'$C_D = $' + f'{cD[4]}', color='black')
 ax.loglog(tD,Gc4s1, color='black') 
 ax.loglog(tD,Gc4s2, color='black')
 ax.loglog(tD,Gc4s3, color='black')
 ax.loglog(tD,Gc4s4, color='black')
 
-plt.xlabel(r'$\mathbf{Tempo}$ ($\mathbf{log(t_D)}$)')
-plt.ylabel(r'$\mathbf{Pressão}$ ($\mathbf{log(p_D)}$)')
-plt.legend(title = "C value:")
+plt.xlabel(r'$\mathbf{log  t_D}$')
+plt.ylabel(r'$\mathbf{log  p_D}$')
+plt.legend(title = r"$C_D$ value:")
 plt.grid(True, which="both", ls="-.")
 plt.axis([1e2,1e8,1e-1,1e2])
 plt.show()
