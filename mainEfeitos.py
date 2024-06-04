@@ -11,7 +11,7 @@ tD = np.linspace(1e2, 1e8, N)
 rD = 1
 # Definindo s como uma variável simbólicas
 cD = [0, 1e2, 1e3, 1e4, 1e5]
-s = [-5, 0,  5, 10, 20]
+s = [-1, 0,  5, 10, 20]
 G = np.zeros((len(tD),len(s),len(cD)))
 for i in range(len(tD)):
     for j in range(len(cD)):
@@ -39,8 +39,8 @@ for i in range(len(tD)):
                     )
                 )
             )
-            var = invlaplace(tD[i],f, 4)
-            G[i][j][k] = var.gavsteh(f,tD[i],4)
+            var = invlaplace(tD[i],f, 8)
+            G[i][j][k] = var.gavsteh(f,tD[i],8)
 
 fig ,ax = plt.subplots()
 
